@@ -2,13 +2,21 @@ body {
   display: flex;
   height: 100vh;
   width: 100vw;
-  margin: auto;
   align-items: center;
   justify-content: center;
+  background-image: url("https://images.assetsdelivery.com/compings_v2/valru/valru1702/valru170200018.jpg");
 }
 .container {
   display: flex;
   flex-direction: column;
+}
+.title{ 
+  height: 600px;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  align-items: center;
+  justify-content: center;
+ font-family: "Permanent Marker", cursive;
 }
 
 .row {
@@ -21,18 +29,26 @@ body {
   justify-content: center;
   align-items: center;
   font-size: x-large;
-  background-color: #e3e3e3;
-  width: 85px;
-  height: 85px;
+  background-color: #7fe2e2;
+  width: 100px;
+  height: 100px;
   text-align: center;
-  border: none;
+  border: dashed;
   /* align-items: center; */
   /* align-items: ; */
   margin: 10px;
-
   font-family: "Permanent Marker", cursive;
 }
 
+.button{
+
+  border:dotted;
+  width:85px;
+  border-radius: 10px;
+  background-color: #7fe2e2;
+  color:black;
+  font-family: "Permanent Marker", cursive;
+}
 .green {
   color: green;
 }

@@ -7,30 +7,83 @@ function fillButton(index, text) {
 }
 // pre-made a function. You can use this function to present an alert to say someone wins
 function winningAlert(winner) {
-  if(confirm(`Horraaay, ${winner} wins!`)){
-     // The code here will be exectued if you press on OK button that will pop on the window 
+  if (confirm(`Horraaay, ${winner} wins!`)) {
+    // The code here will be exectued if you press on OK button that will pop on the window
   }
 }
 
-// SAMPLE CODE: This code fills the 1st and 9th button with X and O initially
-// ❗️ Delete this code once you are done testing
-fillButton(1, "X");
-fillButton(9, "O");
+let X = [];
+let O = [];
 
-/**
- *
- * THE MAIN FUNCTION
- * This function gets executed every time the user clicks the button
- * Add your code here, since this is going to be your main function
- * That interacts with the UI
- */
+let counting = 1;
+let X_check = false;
+let O_check = false;
+let letter = "X";
+let button = [];
+
 function clickButton(index) {
-  console.log(`Button number ${index} is clicked`);
-  // Your main code here.
+  if (counting <= 9) {
+    if (button.indexOf(index) == -1) {
+      button.push(index);
+      fillButton(index, letter);
+      counting += 1;
+
+      if (letter === "X") {
+        X.push(index);
+        letter = "O";
+        X_check = checkWinner(X);
+
+        if (X_check) {
+          setTimeout(() => {
+            winningAlert("Player X");
+          }, 500);
+        }
+      } else {
+        O.push(index);
+        letter = "X";
+        O_check = checkWinner(O);
+
+        if (O_check) {
+          setTimeout(() => {
+            winningAlert("Player O");
+          }, 500);
+        } else if (
+          counting == 10 &&
+          checkWinner(X) == false &&
+          checkWinner(O) == false
+        ) {
+          setTimeout(() => {
+            alert(`Draw`);
+          }, 2000);
+        }
+      }
+    }
+
+    if (counting == 10 && checkWinner(X) == false && checkWinner(O) == false) {
+      setTimeout(() => {
+        alert(`Draw`);
+      }, 500);
+      setTimeout(500);
+    }
+  }
 }
 
 /**
  * (Optional) It's always a good idea to make a function for every single purpose.
  */
-// function checkWinner
-// function restartGame
+function checkWinner(player) {
+  let win = (playerArray, winningArray) =>
+    winningArray.every((num) => playerArray.includes(num));
+
+  if (player.length >= 3) {
+    if (win(player, [1, 2, 3])) return true;
+    else if (win(player, [1, 5, 9])) return true;
+    else if (win(player, [1, 4, 7])) return true;
+    else if (win(player, [2, 5, 8])) return true;
+    else if (win(player, [3, 5, 7])) return true;
+    else if (win(player, [3, 6, 9])) return true;
+    else if (win(player, [4, 5, 6])) return true;
+    else if (win(player, [7, 8, 9])) return true;
+    else return false;
+  }
+}
